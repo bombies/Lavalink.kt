@@ -96,11 +96,9 @@ internal class WebsocketPlayer(internal val node: NodeImpl, internal val guildId
     }
 
     override suspend fun stopTrack() {
-        val trackInfo = (playingTrack ?: return).info
         node.updatePlayer(
             guildId, false, PlayerUpdate(
-                encodedTrack = Omissible(null),
-                identifier = trackInfo.identifier.toOmissible(),
+                encodedTrack = Omissible(null)
             )
         )
         playingTrack = null
